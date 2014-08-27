@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
+    defaultConfig {
+        applicationId 'info.toyonos.hfr4droid'
+        minSdkVersion 15
+        targetSdkVersion 20
+        versionCode 1
+        versionName '1.0'
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        donate {
+            applicationId "info.toyonos.hfr4droid.donate"
+            versionCode 86
+            versionName "0.8.6"
+        }
+        free {
+            applicationId "info.toyonos.hfr4droid"
+            versionCode 85
+            versionName "0.8.5"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    wearApp project(':wear')
+    compile 'com.google.android.gms:play-services-wearable:+'
+
+    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+}

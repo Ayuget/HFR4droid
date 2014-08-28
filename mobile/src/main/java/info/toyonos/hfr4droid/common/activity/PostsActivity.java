@@ -104,6 +104,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -1236,12 +1237,14 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
         webView.addJavascriptInterface(new Object()
         {
             @SuppressWarnings("unused")
+            @JavascriptInterface
             public void log(String s)
             {
                 Log.d(HFR4droidApplication.TAG, "Javascript : " + s);
             }
 
             @SuppressWarnings("unused")
+            @JavascriptInterface
             public void openQuickActionWindow(final long postId, final boolean isMine, final int yOffset)
             {
                 if (yOffset >= 0 && (currentQAwindow == null || !currentQAwindow.isShowing()))
@@ -1274,6 +1277,7 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
             }
 
             @SuppressWarnings("unused")
+            @JavascriptInterface
             public void openProfileWindow(final String pseudo)
             {
                 runOnUiThread(new Runnable()
@@ -1529,6 +1533,7 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
             }
 
             @SuppressWarnings("unused")
+            @JavascriptInterface
             public void handleUrl(String url)
             {
                 try
@@ -1579,6 +1584,7 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
             }
 
             @SuppressWarnings("unused")
+            @JavascriptInterface
             public void editKeywords(final String code)
             {
                 new ProgressDialogAsyncTask<String, Void, String>(PostsActivity.this)

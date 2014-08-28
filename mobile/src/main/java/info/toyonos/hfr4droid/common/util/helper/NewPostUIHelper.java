@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -177,6 +178,7 @@ public abstract class NewPostUIHelper
 						webView.addJavascriptInterface(new Object()
 						{
 							@SuppressWarnings("unused")
+                            @JavascriptInterface
 							public void addSmiley(final String smiley)
 							{
 								context.runOnUiThread(new Runnable()

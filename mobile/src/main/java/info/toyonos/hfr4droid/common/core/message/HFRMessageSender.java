@@ -436,7 +436,7 @@ public class HFRMessageSender
 
 	private ResponseCode getResponseCode(String response)
 	{
-		if (response.matches(".*Votre réponse a été postée avec succés.*"))
+		if (response.matches(".*Votre réponse a été postée avec succès.*"))
 		{
 			/*Matcher m = Pattern.compile("<meta\\s*http\\-equiv=\"Refresh\"\\s*content=\"0;\\s*url=(?:(?:/forum2\\.php.*?page=([0-9]+))|(?:/hfr.*?([0-9]+)\\.htm))", Pattern.CASE_INSENSITIVE | Pattern.DOTALL)
 			.matcher(response);
@@ -446,11 +446,11 @@ public class HFRMessageSender
 			}*/
 			return ResponseCode.POST_ADD_OK;
 		}
-		else if (response.matches(".*Votre message a été posté avec succés.*"))
+		else if (response.matches(".*Votre message a été posté avec succès.*"))
 		{
 			return ResponseCode.TOPIC_NEW_OK;
 		}		
-		else if (response.matches(".*Votre message a été édité avec succés.*"))
+		else if (response.matches(".*Votre message a été édité avec succès.*"))
 		{
 			return ResponseCode.POST_EDIT_OK;
 		}

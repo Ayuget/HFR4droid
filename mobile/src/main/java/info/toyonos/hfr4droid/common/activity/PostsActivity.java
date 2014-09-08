@@ -19,6 +19,7 @@ import info.toyonos.hfr4droid.common.core.message.HFRMessageResponse;
 import info.toyonos.hfr4droid.common.core.message.HFRMessageSender.ResponseCode;
 import info.toyonos.hfr4droid.common.core.message.MessageSenderException;
 import info.toyonos.hfr4droid.common.core.utils.HttpClient;
+import info.toyonos.hfr4droid.common.core.utils.JsExecutor;
 import info.toyonos.hfr4droid.common.core.utils.PatchInputStream;
 import info.toyonos.hfr4droid.common.core.utils.TransformStreamException;
 import info.toyonos.hfr4droid.common.service.MpNotifyService;
@@ -826,6 +827,8 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
             //private boolean actionBarVisible = true;
 
             private int initialPosition;
+            private WebView innerRef = this;
+
             private Runnable scrollerTask = new Runnable()
             {
                 public void run()
@@ -833,7 +836,7 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
                     int newPosition = getScrollY();
                     if(initialPosition - newPosition == 0)//has stopped
                     {
-                        loadUrl("javascript:scrollFct()");
+                        JsExecutor.execute(innerRef, "scrollFct()");
                     }
                     else
                     {
@@ -1558,7 +1561,7 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
                                 if (urlParser.getPage() == currentPageNumber)
                                 {
                                     // C'est le même topic et la même page, on scroll
-                                    webView.loadUrl("javascript:scrollToElement(" + t.getLastReadPost() + ")");
+                                    JsExecutor.execute(webView, "scrollToElement(" + t.getLastReadPost() + ")");
                                 }
                                 else
                                 {
@@ -1978,7 +1981,9 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
                         if (data.equals("1"))
                         {
                             WebView webView = getWebView();
-                            if (webView != null) webView.loadUrl("javascript:removePost(" + postId + ")");
+                            if (webView != null) {
+                                JsExecutor.execute(webView, "removePost(" + postId + ")");
+                            }
                         }
                         else
                         {

@@ -11,6 +11,10 @@ android {
         versionName '1.0'
     }
     buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
+        }
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -19,8 +23,8 @@ android {
     productFlavors {
         donate {
             applicationId "info.toyonos.hfr4droid.donate"
-            versionCode 86
-            versionName "0.8.6"
+            versionCode 87
+            versionName "0.8.7"
         }
         free {
             applicationId "info.toyonos.hfr4droid"

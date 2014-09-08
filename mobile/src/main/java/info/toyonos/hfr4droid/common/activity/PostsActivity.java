@@ -1907,6 +1907,13 @@ public class PostsActivity extends HFR4droidMultiListActivity<List<Post>>
         webView.loadDataWithBaseURL(getDataRetriever().getBaseUrl(), "<html><head>" + meta + js.toString() + css.toString() + js2.toString() + "</head><body>" + postsContent.toString() + "</body></html>", "text/html", "UTF-8", null);
         supportInvalidateOptionsMenu();
 
+        // L'accélération matérielle est active par défaut sous Kitkat, ce qui provoque (pour une raison
+        // encore inexpliquée des crashs au bout de quelques minutes avec le message "Could not lock surface...")
+        // Comme "fix" (plutôt contournement, on désactive manuellement cette accélération matérielle pour KitKat)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
+
         return webView;
     }
 
